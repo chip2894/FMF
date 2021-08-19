@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <!-- Image and text -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand p-2" href="#">
+            <img src="assets/img/logo_fmf.png" width="30" class="d-inline-block align-top" alt="FMF_Logo">
+            <span class="align-middle"> Federación Mexicana de Fútbol Asociación, A.C.</span>
+        </a>
+    </nav>
+    <section class="content p-3">
+        <div class="card mb-3">
+            <div class="card-body">
+                <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+                    <ng-wizard-step [title]="'Paso 1'" [description]="'Datos Generales'" [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                        <app-formulario (datosFicha)="recibirFicha($event)"></app-formulario>
+                    </ng-wizard-step>
+                    <ng-wizard-step [title]="'Paso 2'" [description]="'Ficha Registro'" [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                        <app-ficha [fichaFormulario]="formularioFicha"></app-ficha>
+                    </ng-wizard-step>
+                    <ng-wizard-step [title]="'Paso 3'" [description]="'PDF'" [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                        <app-pdf [fichaFormulario]="formularioFicha"></app-pdf>
+                    </ng-wizard-step>
+                </ng-wizard>
+            </div>
+        </div>
+    </section>
+</div>

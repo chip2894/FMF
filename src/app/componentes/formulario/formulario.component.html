@@ -1,0 +1,72 @@
+<section class="content p-3">
+    <div class="card mb-3">
+        <div class="card-body">
+            <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="guardarFormulario()">
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label text-end">Nombre</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="Nombre(s)" formControlName='nombre' autocomplete="off" [class.is-invalid]="validacionNombre">
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2">
+                        <label class="col-2 col-form-label text-end">Apellido Paterno</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="Apellido Paterno" formControlName='apellidoPaterno' [class.is-invalid]="validacionApellidoPaterno">
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2">
+                        <label class="col-2 col-form-label text-end">Apellido Materno</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="Apellido Materno" formControlName='apellidoMaterno'>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2">
+                        <label class="col-2 col-form-label text-end">Fecha de Nacimiento</label>
+                        <div class="col-3">
+                            <input class="form-control" type="date" formControlName="fechaNacimiento" (change)="validarMayorEdad()" [class.is-invalid]="validacionFechaNacimiento">
+                        </div>
+                        <label class="col-2 col-form-label text-end">Genero</label>
+                        <div class="col-3">
+                            <select class="form-control" formControlName="genero" [class.is-invalid]="validacionGenero">
+                                <option *ngFor="let genero of comboGenero" [value]="genero.nombre">{{genero.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2">
+                        <label class="col-2 col-form-label text-end">Nacionalidad</label>
+                        <div class="col-3">
+                            <select class="form-control" formControlName="nacionalidad" [class.is-invalid]="validacionNacionalidad">
+                                <option *ngFor="let nacionalidad of comboNacionalidades" [value]="nacionalidad.nombre">{{nacionalidad.nombre}}</option>
+                            </select>
+                        </div>
+                        <label class="col-2 col-form-label text-end">Club de Fútbol</label>
+                        <div class="col-3">
+                            <select class="form-control" formControlName="clubFutbol" [class.is-invalid]="validacionClubFutbol">
+                                <option *ngFor="let club of comboClubes" [value]="club.nombre">{{club.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2" [hidden]="ocultarRfc">
+                        <label class="col-2 col-form-label text-end">RFC</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" formControlName="rfc" [class.is-invalid]="validacionRfc">
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2">
+                        <label class="col-2 col-form-label text-end">Ocupación</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" formControlName="ocupacion" [class.is-invalid]="validacionOcupacion">
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2">
+                        <div class="col-8 offset-2 d-grid gap-2">
+                            <button class="btn btn-outline-success">Guardar</button>
+                            <button class="btn btn-outline-primary" (click)="resetearFormulario()">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
